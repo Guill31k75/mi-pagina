@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Buscador de citas del Rvdo. William Marrion Braham">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Buscador de Citas</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
@@ -10,18 +12,30 @@
 <body>
     <div class="search-container">
         <h1>Citas del Rvdo. William Marrion Braham</h1>
-        <div class="controls">
-            <select id="sectionSelector">
-                <option value="main-pages">Sección Principal</option>
-                <option value="pages-a">Sección A</option>
-                <option value="pages-b">Sección B</option>
-            </select>
-            <input type="text" id="citationInput" placeholder="Número de cita" inputmode="numeric" pattern="[0-9]*">
-            <button id="searchButton">Buscar Cita</button>
-        </div>
+        <form id="searchForm">
+            <div class="controls">
+                <select id="sectionSelector" name="section">
+                    <option value="main-pages">Paginas Principales.</option>
+                    <option value="pages-a">Páginas A</option>
+                    <option value="pages-b">Páginas B</option>
+                </select>
+                <input 
+                    type="number" 
+                    id="citationInput" 
+                    name="citation" 
+                    placeholder="Número de Cita." 
+                    inputmode="numeric"
+                    pattern="[0-9]*" 
+                    min="1" 
+                    max="1539">
+                <button type="submit" id="searchButton">Buscar</button>
+            </div>
+        </form>
     </div>
     <div class="container">
-        <div id="citationDisplay"></div>
+        <div id="citationDisplay">
+            <p id="subtitulo">Textos tomados del libro de Citas de William Marrion Branham.</p>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
