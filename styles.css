@@ -37,51 +37,33 @@ body {
     max-width: 600px;
     margin: 0 auto;
     display: flex;
-    gap: 10px;
-    justify-content: center; /* Centra los elementos horizontalmente */
-
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
 }
 
 .search-container .controls select,
 .search-container .controls input,
 .search-container .controls button {
-    flex: 1;
-    padding: 8px;
-    font-size: 0.9rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.search-container .controls input {
-    width: 80px;
-    height: 30px;
-    box-sizing: border-box;
-    flex: none;
+   padding: 6px;
+   font-size: 0.95rem;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+   flex: none;
 }
 
 .search-container .controls button {
-    width: 120px;
-    height: 30px;
-    padding: 8px 16px;
-    box-sizing: border-box;
     flex: none;
+    width: 100px; /*100px*/
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
 }
 
-.search-container .controls select { /* Estilos específicos para el select */
-    width: 150px;
-    height: 30px;
-    padding: 6px;
-    font-size: 0.9rem;
-    box-sizing: border-box;
-    flex: none;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 1.5em;
-    padding-right: 30px;
+.search-container .controls button:hover {
+    background-color: #0056b3;
 }
 
 .container {
@@ -91,7 +73,7 @@ body {
     background: #ffffff;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 20px;
+    padding: 40px; /*original 20px*/
     text-align: left;
     flex-grow: 1;
 }
@@ -103,13 +85,17 @@ body {
     min-height: 50px;
 }
 
-#citationDisplay .cita {
-    margin-bottom: 10px;
+.cita {
+    margin-bottom: 15px;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     background: #f9f9f9;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cita:not(:last-child) {
+    border-bottom: 2px solid #007bff;
 }
 
 .error {
@@ -124,24 +110,56 @@ body {
     margin-top: 10px;
 }
 
-@media (max-width: 480px) {
-    .search-container .controls {
-        flex-direction: column;
+@media (max-width: 768px) {
+
+    /* Ajuste del contenedor de búsqueda */
+    .search-container {
+        position: fixed; /* Hace que el contenedor sea fijo */
+        top: 0; /* Posición fija en la parte superior */
+        width: 100%; /* Asegura que ocupe todo el ancho de la pantalla */
+        z-index: 10; /* Asegura que esté encima de otros elementos */
+        padding: 5px 10px; /* Reduce el padding superior e inferior para disminuir la altura */
+        background-color: rgba(240, 248, 255, 0.95); /* Fondo semitransparente */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Añade sombra para diferenciarlo */
     }
+
+    /* Ajuste del título */
     .search-container h1 {
-        font-size: 1.2rem;
-        text-align: center;
+        font-size: 1rem; /* Tamaño de fuente más pequeño */
+        margin-bottom: 5px; /* Reduce el espacio inferior */
+        text-align: center; /* Centrado del título */
+        line-height: 1.2; /* Reduce la altura de línea */
+    }
+
+    /* Ajuste de los controles (selector, input y botón) */
+    .search-container .controls {
+        flex-direction: column; /* Los controles se apilan verticalmente */
+        gap: 8px; /* Reduce el espacio entre los controles */
+        align-items: stretch; /* Asegura que todos los controles ocupen todo el ancho disponible */
+    }
+
+    .search-container .controls select,
+    .search-container .controls input,
+    .search-container .controls button {
+        width: 100%; /* Asegura que estos elementos se expandan horizontalmente */
+        font-size: 0.9rem; /* Tamaño de fuente ligeramente más pequeño */
+        padding: 8px; /* Reduce el padding para que los controles sean más compactos */
+    }
+
+    /* Ajuste del contenedor principal */
+    .container {
+        margin-top: 140px; /* Espacio superior ajustado para evitar superposición */
+        padding: 20px; /* Añade un padding interno para mantener separación entre el texto y el borde del contenedor */
+    }
+
+    /* Ajuste del área de visualización de citas */
+    #citationDisplay {
+        font-size: 1rem; /* Tamaño de fuente uniforme para una mejor jerarquía visual */
+        line-height: 1.6; /* Mejora la legibilidad aumentando la altura de línea */
+        word-wrap: break-word; /* Evita que el texto se desborde fuera del contenedor */
+        margin-top: 20px; /* Añade espacio entre el cuadro de búsqueda y el contenido mostrado */
+        border: 1px solid #ddd; /* Añade un borde sutil para diferenciar la sección */
+        border-radius: 10px; /* Redondea los bordes para un diseño más moderno */
     }
 }
 
-@media (max-width: 767px) {
-    .container {
-        margin-top: 150px;
-    }
-}
-
-@media (max-width: 479px) {
-    .container {
-        margin-top: 170px;
-    }
-}
